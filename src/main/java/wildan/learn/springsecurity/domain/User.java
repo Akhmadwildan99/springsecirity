@@ -37,6 +37,12 @@ public class User implements Serializable {
     @Column(name = "last_modified_by")
     private String lastModifiedBy;
 
+    @Column(name = "first_name")
+    private String firstName;
+
+    @Column(name = "last_name")
+    private String lastName;
+
     @JsonIgnore
     @OneToMany(mappedBy = "user", fetch = FetchType.EAGER)
     private Set<UserAuthoryty> userAuthoryties;
@@ -120,6 +126,22 @@ public class User implements Serializable {
 
     public void setUserAuthoryties(Set<UserAuthoryty> userAuthoryties) {
         this.userAuthoryties = userAuthoryties;
+    }
+
+    public String getFirstName() {
+        return firstName;
+    }
+
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
+    }
+
+    public String getLastName() {
+        return lastName;
+    }
+
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
     }
 
     @Override

@@ -12,4 +12,6 @@ import java.util.Optional;
 @Repository
 public interface UserRepository extends  JpaRepository<User, Long>,JpaSpecificationExecutor<User> {
     List<User> findUserByLogin(String login);
+
+    Optional<User> findUserByLoginIgnoreCase(String login);
 }
