@@ -1,5 +1,5 @@
-CREATE TABLE "user" (
-    id BIGINT PRIMARY KEY  NOT NULL ,
+CREATE TABLE IF NOT EXISTS hr_user (
+    id BIGINT PRIMARY KEY  NOT NULL,
     login VARCHAR(50),
     email VARCHAR(50),
     password_hash TEXT,
