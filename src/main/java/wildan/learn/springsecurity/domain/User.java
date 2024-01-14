@@ -1,10 +1,12 @@
 package wildan.learn.springsecurity.domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 
 import java.io.Serializable;
 import java.time.Instant;
 import java.util.Objects;
+import java.util.Set;
 
 @Entity
 @Table(name = "hr_user")
@@ -35,6 +37,9 @@ public class User implements Serializable {
     @Column(name = "last_modified_by")
     private String lastModifiedBy;
 
+    @JsonIgnore
+    @OneToMany(mappedBy = "user", fetch = FetchType.EAGER)
+    private Set<UserAuthoryty> userAuthoryties;
 
 
     public void setId(Long id) {
@@ -107,6 +112,14 @@ public class User implements Serializable {
 
     public void setLastModifiedBy(String lastModifiedBy) {
         this.lastModifiedBy = lastModifiedBy;
+    }
+
+    public Set<UserAuthoryty> getUserAuthoryties() {
+        return userAuthoryties;
+    }
+
+    public void setUserAuthoryties(Set<UserAuthoryty> userAuthoryties) {
+        this.userAuthoryties = userAuthoryties;
     }
 
     @Override
