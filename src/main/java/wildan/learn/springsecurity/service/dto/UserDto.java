@@ -1,14 +1,18 @@
 package wildan.learn.springsecurity.service.dto;
 
 import org.antlr.v4.runtime.misc.NotNull;
+import wildan.learn.springsecurity.domain.UserAuthoryty;
 
 import java.util.Objects;
+import java.util.Set;
 
 
 public class UserDto {
     private String email;
     private String firstName;
     private String lastName;
+    private String password;
+    private Set<UserAuthoryty> userAuthoryties;
 
     public String getEmail() {
         return email;
@@ -32,6 +36,22 @@ public class UserDto {
 
     public void setLastName(String lastName) {
         this.lastName = lastName;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+    public Set<UserAuthoryty> getUserAuthoryties() {
+        return userAuthoryties;
+    }
+
+    public void setUserAuthoryties(Set<UserAuthoryty> userAuthoryties) {
+        this.userAuthoryties = userAuthoryties;
     }
 
     @Override
