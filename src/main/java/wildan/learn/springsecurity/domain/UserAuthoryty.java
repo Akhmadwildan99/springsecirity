@@ -1,6 +1,7 @@
 package wildan.learn.springsecurity.domain;
 
 import jakarta.persistence.*;
+import wildan.learn.springsecurity.domain.enumeration.UserAuthorityType;
 
 import java.io.Serializable;
 import java.util.Objects;
@@ -14,10 +15,11 @@ public class UserAuthoryty implements Serializable {
     private Long id;
 
     @Column(name = "name")
-    private String name;
+    @Enumerated(EnumType.STRING)
+    private UserAuthorityType name;
 
     @ManyToOne
-    @JoinColumn(name = "user_id")
+    @JoinColumn(name = "user_id" )
     private User user;
 
     public void setUser_id(Long id) {
@@ -28,11 +30,11 @@ public class UserAuthoryty implements Serializable {
         return id;
     }
 
-    public String getName() {
+    public UserAuthorityType getName() {
         return name;
     }
 
-    public void setName(String name) {
+    public void setName(UserAuthorityType name) {
         this.name = name;
     }
 

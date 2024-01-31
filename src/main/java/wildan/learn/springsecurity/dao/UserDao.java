@@ -1,13 +1,12 @@
-package wildan.learn.springsecurity.service.dto;
+package wildan.learn.springsecurity.dao;
 
-import org.antlr.v4.runtime.misc.NotNull;
 import wildan.learn.springsecurity.domain.UserAuthoryty;
 
 import java.util.Objects;
 import java.util.Set;
 
 
-public class UserDto {
+public class UserDao {
     private String email;
     private String firstName;
     private String lastName;
@@ -58,7 +57,7 @@ public class UserDto {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        UserDto userDto = (UserDto) o;
+        UserDao userDto = (UserDao) o;
         return Objects.equals(email, userDto.email) && Objects.equals(firstName, userDto.firstName) && Objects.equals(lastName, userDto.lastName);
     }
 

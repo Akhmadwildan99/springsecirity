@@ -25,7 +25,7 @@ public class User implements Serializable {
     @Column(name = "password_hash")
     private String passwordHash;
     @Column(name = "is_active")
-    private String isActive;
+    private Boolean isActive;
     @Column(name = "created_date")
     private Instant createdDate;
 
@@ -45,7 +45,7 @@ public class User implements Serializable {
     private String lastName;
 
     @JsonIgnore
-    @OneToMany(mappedBy = "user", fetch = FetchType.EAGER)
+    @OneToMany(mappedBy = "user", cascade = CascadeType.REMOVE)
     private Set<UserAuthoryty> userAuthoryties;
 
 
@@ -81,11 +81,11 @@ public class User implements Serializable {
         this.passwordHash = passwordHash;
     }
 
-    public String getIsActive() {
+    public Boolean getIsActive() {
         return isActive;
     }
 
-    public void setIsActive(String isActive) {
+    public void setIsActive(Boolean isActive) {
         this.isActive = isActive;
     }
 

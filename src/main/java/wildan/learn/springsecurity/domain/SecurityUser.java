@@ -3,7 +3,10 @@ package wildan.learn.springsecurity.domain;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
+import java.util.ArrayList;
 import java.util.Collection;
+import java.util.List;
+import java.util.stream.Collectors;
 
 public class SecurityUser implements UserDetails {
 
@@ -16,17 +19,29 @@ public class SecurityUser implements UserDetails {
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
-        return null;
+
+        if(user.getUserAuthoryties().isEmpty() || user.getUserAuthoryties() == null ) {
+            return null;
+        }
+        List<GrantedAuthority> grantedAuthorities = new ArrayList<>();
+        user.getUserAuthoryties().stream().map(UserAuthoryty::getName).toList()
+                .forEach(a -> {
+                    GrantedAuthority authority = a::toString;
+                    grantedAuthorities.add(authority);
+
+                });
+
+        return grantedAuthorities;
     }
 
     @Override
     public String getPassword() {
-        return null;
+        return user.getPasswordHash();
     }
 
     @Override
     public String getUsername() {
-        return null;
+        return user.getLogin();
     }
 
     @Override
@@ -46,6 +61,6 @@ public class SecurityUser implements UserDetails {
 
     @Override
     public boolean isEnabled() {
-        return false;
+        return true;
     }
 }
