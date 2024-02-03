@@ -11,7 +11,6 @@ import org.springframework.stereotype.Service;
 import java.security.Key;
 
 
-import java.util.Base64;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
@@ -55,7 +54,13 @@ public class JwtService {
             Map<String, Object> extractClaims,
             UserDetails userDetails
     ) {
-        return buildToken(extractClaims, userDetails, refreshExpiration);
+        return buildToken(extractClaims, userDetails, jwtExpiration);
+    }
+
+    public String generateRefreshToken(
+            UserDetails userDetails
+    ) {
+        return buildToken(new HashMap<>(), userDetails, refreshExpiration);
     }
 
     private String buildToken(
