@@ -12,8 +12,8 @@ import java.util.Set;
 @Table(name = "hr_user")
 public class User implements Serializable {
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "sequenceGenerator")
-    @SequenceGenerator(name = "sequenceGenerator")
+        @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "sequenceGenerator")
+        @SequenceGenerator(name = "sequenceGenerator")
     private Long id;
     @Column(name = "login")
     private String login;
@@ -45,7 +45,7 @@ public class User implements Serializable {
     private String lastName;
 
     @JsonIgnore
-    @OneToMany(mappedBy = "user", cascade = CascadeType.REMOVE)
+    @OneToMany(mappedBy = "user", fetch = FetchType.EAGER, cascade = CascadeType.REMOVE)
     private Set<UserAuthoryty> userAuthoryties;
 
 

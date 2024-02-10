@@ -64,7 +64,7 @@ public class SecurityConfig {
                     auth
                             .requestMatchers( "/api/v1/auth/authenticate").permitAll()
                             .requestMatchers( "/api/v1/auth/register").permitAll()
-//                            .requestMatchers(HttpMethod.POST, "/api/v1/auth/authenticate").permitAll()
+                            .requestMatchers("/api/v1/hello").hasAnyAuthority("USER")
                 .anyRequest().authenticated();
         })
 

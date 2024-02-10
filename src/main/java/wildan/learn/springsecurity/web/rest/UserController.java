@@ -1,6 +1,7 @@
 package wildan.learn.springsecurity.web.rest;
 
 import jakarta.validation.Valid;
+import org.apache.tomcat.util.http.ResponseUtil;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,6 +26,7 @@ import wildan.learn.springsecurity.service.UserService;
 import java.net.URI;
 import java.net.URISyntaxException;
 import java.util.List;
+import java.util.Optional;
 import java.util.Set;
 
 
@@ -45,9 +47,9 @@ public class UserController {
     }
 
     @GetMapping("/user/{login}")
-    public ResponseEntity<List<User>> findUserByLogin(@PathVariable String login) {
-        List<User> users = userRepository.findUserByLogin(login);
-        return ResponseEntity.ok().body(users);
+    public ResponseEntity<User> findUserByLogin(@PathVariable String login) {
+        Optional<User> user = userRepository.findUserByLogin(login);
+        return ResponseEntity.ok().body(user.get());
 
     }
 

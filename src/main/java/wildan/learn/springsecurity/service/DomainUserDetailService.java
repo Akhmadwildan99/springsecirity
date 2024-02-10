@@ -34,7 +34,7 @@ public class DomainUserDetailService implements UserDetailsService {
         log.debug("Authenticating by, {}", login);
 
 
-        return userRepository.findUserByLoginIgnoreCase(login)
+        return userRepository.findUserByLogin(login)
                 .map(user -> {
 
                     if (!user.getIsActive().equals(true)) {
